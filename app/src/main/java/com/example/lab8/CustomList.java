@@ -16,6 +16,7 @@ public class CustomList extends ArrayAdapter<City> {
 
     private ArrayList<City> cities;
     private Context context;
+    private boolean hasCity;
 
     public CustomList(Context context, ArrayList<City> cities) {
         super(context, 0, cities);
@@ -52,6 +53,42 @@ public class CustomList extends ArrayAdapter<City> {
     public void addCity(City city){
         cities.add(city);
     }
+    /**
+     * Checks if city is in list
+     * @param city
+     * This is a candidate city to check
+     */
+    public boolean hasCity(City city){
+        for (City currentCity : cities){
+            if (currentCity.compareTo(city) == 0) {
+                return true;
+            }
+        }
+        return false;
 
     }
+    /**
+     * This removes a city to the list if the city exists
+     * @param city
+     * This is a candidate city to add
+     */
+    public void delete(City city){
+        if (cities.contains(city)) {
+            cities.remove(city);
+        }
+
+        else throw new IllegalArgumentException();
+    }
+    /**
+     * Counts all cities in list
+     * @return size
+     * Returns int of the size
+     */
+    public int countCities(){
+        int size = cities.size();
+        return size;
+    }
+
+
+}
 
